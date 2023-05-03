@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 
 //import self modules.
-const { success } = require("./messages");
+const { success, info } = require("./messages");
 const { findArguments } = require("./helpers");
 
 //define data directory.
@@ -37,6 +37,15 @@ exports.createPerson = (argument) => {
   }
 };
 
+exports.getUsersList = () => {
+  const data = JSON.parse(fs.readFileSync(personDataDir).toString());
+  console.log(data);
+  if (data.length > 0) {
+    return console.log(data);
+  }
+  info("person doesn't have any data.");
+};
+
 exports.createTodo = (argument) => {
   const taskName = findArguments(argument, "todoname")[0].split("=")[1];
   let data = [];
@@ -58,4 +67,12 @@ exports.createTodo = (argument) => {
     fs.writeFileSync(personDataDir, result);
     success("todo added successfully.");
   }
+};
+
+exports.getTodoList = () => {
+  const data = JSON.parse(fs.readFileSync(todoDataDir).toString());
+  if (data.length > 0) {
+    return console.log(data);
+  }
+  info("todo doesn't have any data.");
 };
