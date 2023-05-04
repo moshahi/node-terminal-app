@@ -4,6 +4,7 @@
 <p> run npm install OR yarn install </p>
 
 <h2> ----commands---- <h2>
+  
 <p> node terminal.js create person firstname="john" lastname="green" password=123456 </p>
 this command create a person with the information you entered.
 
